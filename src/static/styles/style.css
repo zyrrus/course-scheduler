@@ -1,0 +1,316 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 16px;
+  background: #262626;
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #D9D9D9;
+}
+
+.week-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  row-gap: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 3rem 1rem;
+  margin-inline: auto;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.week-container h1 {
+  color: #f8d574;
+}
+
+.week-container h2 {
+  color: #E7A060;
+}
+
+.week {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  width: 100%;
+  min-width: 45rem;
+  max-width: 60rem;
+  height: 32rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  -webkit-box-shadow: 8px 8px 15px #202020, -8px -8px 15px #2c2c2c;
+          box-shadow: 8px 8px 15px #202020, -8px -8px 15px #2c2c2c;
+}
+
+.week--col {
+  position: relative;
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+  color: #D9D9D9;
+}
+
+.week--col-time {
+  -webkit-box-flex: .5;
+      -ms-flex-positive: .5;
+          flex-grow: .5;
+  text-align: right;
+}
+
+.week--col-time ul {
+  margin-top: 1.9rem;
+  line-height: 1.2;
+}
+
+.week--col-time ul::after {
+  content: "";
+  position: absolute;
+  top: 1.5rem;
+  right: 0;
+  bottom: 0;
+  display: block;
+  width: .1rem;
+  background-color: #D9D9D9;
+  border-radius: 10rem;
+}
+
+.week--col-time li {
+  position: relative;
+  padding-inline: .5em;
+  list-style: none;
+}
+
+.week--col-time li::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 100%;
+  width: 43.5rem;
+  height: .05rem;
+  background-color: #D9D9D9;
+}
+
+.week--col-day {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  padding: .2rem .8rem;
+  text-align: center;
+}
+
+.week--col-day h2 {
+  color: #D9D9D9;
+  text-decoration: underline;
+}
+
+.btn-box {
+  width: 100%;
+  max-width: 60rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-column-gap: 2rem;
+          column-gap: 2rem;
+}
+
+.btn {
+  color: #D9D9D9;
+  background-color: #262626;
+  text-align: center;
+  padding: 1rem 2rem;
+  border-radius: 5em;
+  -webkit-box-shadow: 5px 5px 15px #1e1e1e, -5px -5px 15px #343434;
+          box-shadow: 5px 5px 15px #1e1e1e, -5px -5px 15px #343434;
+}
+
+.btn:active {
+  background: linear-gradient(145deg, #222222, #292929);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.course {
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: black;
+  border-radius: 2rem;
+  background: linear-gradient(145deg, #f8d574, #E7A060);
+  -webkit-box-shadow: inset 3px 3px 15px rgba(255, 255, 255, 0.2), inset -3px -3px 15px rgba(0, 0, 0, 0.3), 3px 3px 15px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 3px 3px 15px rgba(255, 255, 255, 0.2), inset -3px -3px 15px rgba(0, 0, 0, 0.3), 3px 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+.edit-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  row-gap: 1.5rem;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  -webkit-box-shadow: 8px 8px 15px #202020, -8px -8px 15px #2c2c2c;
+          box-shadow: 8px 8px 15px #202020, -8px -8px 15px #2c2c2c;
+  background-color: #262626;
+}
+
+.edit-container h1 {
+  color: #f8d574;
+}
+
+.edit-container form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  row-gap: 1.5rem;
+}
+
+.edit-container form label {
+  color: #D9D9D9;
+}
+
+.edit-container form input {
+  font-size: 1.25rem;
+  background-color: #262626;
+  color: #D9D9D9;
+  border: none;
+  border-radius: 5rem;
+  -webkit-box-shadow: inset 5px 5px 15px #1e1e1e, inset -5px -5px 15px #343434;
+          box-shadow: inset 5px 5px 15px #1e1e1e, inset -5px -5px 15px #343434;
+  padding: 1.25rem 1.75rem;
+}
+
+.edit-container form input:focus, .edit-container form textarea:focus, .edit-container form select:focus {
+  outline: none;
+  -webkit-box-shadow: 5px 5px 15px #1e1e1e, -5px -5px 15px #343434;
+          box-shadow: 5px 5px 15px #1e1e1e, -5px -5px 15px #343434;
+}
+
+.edit-container form input[type=submit] {
+  -webkit-box-shadow: 5px 5px 15px #1e1e1e, -5px -5px 15px #343434;
+          box-shadow: 5px 5px 15px #1e1e1e, -5px -5px 15px #343434;
+  color: #E7A060;
+}
+
+.days-checkboxes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.days-checkboxes--stacked {
+  position: relative;
+  width: 5ch;
+  height: 5ch;
+  border-radius: 2em;
+  -webkit-box-shadow: 5px 5px 15px #1e1e1e, -5px -5px 15px #343434;
+          box-shadow: 5px 5px 15px #1e1e1e, -5px -5px 15px #343434;
+}
+
+.days-checkboxes--stacked label {
+  display: inline-block;
+  height: 33%;
+  width: 100%;
+  padding-block: 30%;
+  text-align: center;
+}
+
+.days-checkboxes--stacked input {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.days-checkboxes--stacked input:checked {
+  display: unset;
+}
+
+.days-checkboxes--stacked input:checked::after {
+  -webkit-box-shadow: 5px 5px 0 15px #262626, -5px -5px 0 15px #262626, inset 5px 5px 15px #1e1e1e, inset -5px -5px 15px #343434;
+          box-shadow: 5px 5px 0 15px #262626, -5px -5px 0 15px #262626, inset 5px 5px 15px #1e1e1e, inset -5px -5px 15px #343434;
+}
+
+.days-checkboxes--stacked input::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  border-radius: 2em;
+}
+
+.course-view {
+  background-color: #8d8a84;
+}
+
+.course-list {
+  background-color: #262626;
+  color: #D9D9D9;
+}
+/*# sourceMappingURL=style.css.map */

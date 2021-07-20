@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="week-container">
+    <h1>Course Schedule Generator</h1>
+    <a href="{{ url_for('editor', courses_json='[') }}" class="btn">Start Here</a>
+    <h2>Created by Zyrrus - <a href="https://github.com/zyrrus">https://github.com/zyrrus</a></h2>
+    <p>This is a tool used to generate schedules given a list of courses. 
+        On the editor screen, you'll be asked to enter some information on 
+        each course. Submit as many as you need, and when you're done adding 
+        new courses, click "Done". <br>
+        Now, you will be able to cycle through all the generated schedules. 
+        These schedules are generally going to have too many courses, but 
+        note that removing any course from a schedule produces another 
+        valid schedule. 
+    </p>
+</div>
+
+{% endblock %}
