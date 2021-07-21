@@ -2,10 +2,10 @@
 
 {% block body %}
 
-<div class="week-container">
+<div class="week">
     
-    <div class="week">
-        <div class="week--col week--col-time">
+    <div class="week__box">
+        <div class="week__box__column week__box__column--time">
             <ul>
                 <li><p> 7:00</p></li>
                 <li><p> 7:30</p></li>
@@ -35,54 +35,54 @@
             </ul>
         </div>
         
-        <div class="week--col week--col-day">
+        <div class="week__box__column week__box__column--day">
             <h2>Monday</h2>
             {% for box in week['M'] %}
-                <div class="course" style="top: {{ box.top }}rem; height: {{ box.length }}rem;">
+                <div class="week__box__course" style="top: {{ box.top }}rem; height: {{ box.length }}rem;">
                     <p>{{box.course}}</p>
                 </div>
             {% endfor %}
         </div>
-        <div class="week--col week--col-day">
+        <div class="week__box__column week__box__column--day">
             <h2>Tuesday</h2>
             {% for box in week['T'] %}
-                <div class="course" style="top: {{ box.top }}rem; height: {{ box.length }}rem;">
+                <div class="week__box__course" style="top: {{ box.top }}rem; height: {{ box.length }}rem;">
                     <p>{{box.course}}</p>
                 </div>
             {% endfor %}
         </div>
-        <div class="week--col week--col-day">
+        <div class="week__box__column week__box__column--day">
             <h2>Wednesday</h2>
             {% for box in week['W'] %}
-                <div class="course" style="top: {{ box.top }}rem; height: {{ box.length }}rem;">
+                <div class="week__box__course" style="top: {{ box.top }}rem; height: {{ box.length }}rem;">
                     <p>{{box.course}}</p>
                 </div>
             {% endfor %}
         </div>
-        <div class="week--col week--col-day">
+        <div class="week__box__column week__box__column--day">
             <h2>Thursday</h2>
             {% for box in week['Th'] %}
-                <div class="course" style="top: {{ box.top }}rem; height: {{ box.length }}rem;">
+                <div class="week__box__course" style="top: {{ box.top }}rem; height: {{ box.length }}rem;">
                     <p>{{box.course}}</p>
                 </div>
             {% endfor %}
         </div>
-        <div class="week--col week--col-day">
+        <div class="week__box__column week__box__column--day">
             <h2>Friday</h2>
             {% for box in week['F'] %}
-                <div class="course" style="top: {{ box.top }}rem; height: {{ box.length }}rem;">
+                <div class="week__box__course" style="top: {{ box.top }}rem; height: {{ box.length }}rem;">
                     <p>{{box.course}}</p>
                 </div>
             {% endfor %}
         </div>
-    </div> <!-- /week -->
+    </div> <!-- /week__box -->
 
-    <div class="btn-box">
-        <a href="{{ url_for('set_index', change=-1) }}"><div class="btn">Previous</div></a>
-        <a href="{{ url_for('editor', courses_json='[') }}"><div class="btn">Start Over</div></a>
-        <a href="{{ url_for('set_index', change=1) }}"><div class="btn">Next</div></a>
+    <div class="week__button-box">
+        <a href="{{ url_for('set_index', change=-1) }}"><div class="week__button-box__button">Previous</div></a>
+        <a href="{{ url_for('home') }}"><div class="week__button-box__button">Start Over</div></a>
+        <a href="{{ url_for('set_index', change=1) }}"><div class="week__button-box__button">Next</div></a>
     </div>
 
-    <h2>Schedule number: {{ index+1 }}</h2>
-</div> <!-- /weelk-container -->
+    <h2 class="week__text">Schedule number: {{ index+1 }}</h2>
+</div> <!-- /week -->
 {% endblock %}

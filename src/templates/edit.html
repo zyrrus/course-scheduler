@@ -2,25 +2,34 @@
 
 {% block body %}
 
-<div class="edit-container">
-    <h1>Add Course</h1>
-    <form id="course-form" method="POST" onkeydown="return event.key != 'Enter';">
+<div class="edit">
+    <h1 class="edit__title">Add Course</h1>
+
+    <form class="edit__form" id="course-form" method="POST" onkeydown="return event.key != 'Enter';">
         {{ edit_form.csrf_token }}
-        {{ edit_form.name(autocomplete="off", placeholder="Course name") }}
-        {{ edit_form.start(autocomplete="off", placeholder="11:30") }}
-        {{ edit_form.end(autocomplete="off", placeholder="13:00") }}
-        <div class="days-checkboxes">
-            <div class="days-checkboxes--stacked">{{ edit_form.monday.label }} {{ edit_form.monday }}</div>
-            <div class="days-checkboxes--stacked">{{ edit_form.tuesday.label }} {{ edit_form.tuesday }}</div>
-            <div class="days-checkboxes--stacked">{{ edit_form.wednesday.label }} {{ edit_form.wednesday }}</div>
-            <div class="days-checkboxes--stacked">{{ edit_form.thursday.label }} {{ edit_form.thursday }}</div>
-            <div class="days-checkboxes--stacked">{{ edit_form.friday.label }} {{ edit_form.friday }}</div>
+        {{ edit_form.name(class_="edit__form__text", autocomplete="off", placeholder="Course name") }}
+        {{ edit_form.start(class_="edit__form__text", autocomplete="off", placeholder="11:30") }}
+        {{ edit_form.end(class_="edit__form__text", autocomplete="off", placeholder="13:00") }}
+        <div class="edit__form__days-box">
+            <div>{{ edit_form.monday.label }} {{ edit_form.monday }}</div>
+            <div>{{ edit_form.tuesday.label }} {{ edit_form.tuesday }}</div>
+            <div>{{ edit_form.wednesday.label }} {{ edit_form.wednesday }}</div>
+            <div>{{ edit_form.thursday.label }} {{ edit_form.thursday }}</div>
+            <div>{{ edit_form.friday.label }} {{ edit_form.friday }}</div>
         </div>
-        {{ edit_form.submit_course }}
+        {{ edit_form.submit_course(class_="edit__form__button") }}
     </form>
-    <form id="submit-form" method="POST">
+
+    {% with messages = get_flashed_messages() %}
+        <!-- possibly flash added courses in green? --remove  -->
+        {% if messages %}
+            <p class="edit__alert">{{ messages[0] }}</p>
+        {% endif %}
+    {% endwith %}
+
+    <form class="edit__form" id="submit-form" method="POST">
         {{ done_form.csrf_token }}
-        {{ done_form.done }}
+        {{ done_form.done(class_="edit__form__button") }}
     </form>
 </div>
 
