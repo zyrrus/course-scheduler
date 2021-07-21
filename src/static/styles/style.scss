@@ -1,263 +1,296 @@
+// Variables ---------------------------------------------------------------------
+$font: 16px 'Trebuchet MS', sans-serif;
+
 $black: #262626;
 $white: #D9D9D9;
 $accent: #f8d574;
 $accent-dark: #E7A060;
+$alert: #ff4f4f;
 
-$font: 'Trebuchet MS', sans-serif;
-
-$raised: 8px 8px 15px #202020, -8px -8px 15px #2c2c2c;
-$raised-sm: 5px 5px 15px #1e1e1e, -5px -5px 15px #343434;
+// Neumorphism shadows
+$raised-large: 8px 8px 15px #202020, -8px -8px 15px #2c2c2c;
+$raised-small: 5px 5px 15px #1e1e1e, -5px -5px 15px #343434;
 $hide: 5px 5px 0 15px $black, -5px -5px 0 15px $black;
 $inset: inset 5px 5px 15px #1e1e1e, inset -5px -5px 15px #343434;
 
-// CLEANUP NOTES
-// add btn and btn-clickable
-// Make containers reusable
 
+// Base Styling ---------------------------------------------------------------------
+@mixin flex-center($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+@mixin abs-center() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin morph($padding, $radius, $shadow) {
+    padding: $padding;
+    border-radius: $radius;
+    box-shadow: $shadow;
+}
 
 *, *::before, *::after {
     margin: 0;
     padding: 0;
 }
-  
+
 html, body {
     width: 100%;
     min-height: 100vh;
     box-sizing: border-box;
-    font-size: 16px;
-    background: $black;
-    font-family: $font;
+    font: $font;
+    background-color: $black;
 }
+
+body { @include flex-center(column); }
 
 a { 
     text-decoration: none; 
     color: $white;
 }
 
+// Home Styling -----------------------------------------------------------------
+.home {
+    @include flex-center(column);
+    @include morph(2.5rem, 1rem, $raised-large);
 
-.week-container {
-    display: flex;
-    flex-direction: column;
-    row-gap: 2rem;
-    align-items: center;
-    justify-content: center;
-    padding: 3rem 1rem;
-    margin-inline: auto;
-    width: max-content;
-
-    h1 { color: $accent; }
-    h2 { color: $accent-dark; }
-}
-
-.week {
-    position: relative;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: stretch;
-    width: 100%;
-    min-width: 45rem;
-    max-width: 60rem;
-    height: 32rem;
-    padding: 1rem;
-    border-radius: 1rem;
-    box-shadow: $raised;
-    
-    
-    &--col {
-        position: relative;
-        flex-basis: 0;
-        color: $white;
-
-        &-time {
-            flex-grow: .5;
-            text-align: right;
-    
-            ul {
-                margin-top: 1.9rem;
-                line-height: 1.2;
-
-                &::after {
-                    content: "";
-                    position: absolute;
-                    top: 1.5rem;
-                    right: 0;
-                    bottom: 0;
-                    display: block;
-                    width: .1rem;
-                    background-color: $white;
-                    border-radius: 10rem;
-                }
-            }
-            
-            li {
-                position: relative;
-                padding-inline: .5em;
-                list-style: none;
-
-                &::before {
-                    content: "";
-                    position: absolute;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    left: 100%;
-
-                    width: 43.5rem;
-                    height: .05rem;
-                    background-color: $white;
-                }
-            }
-        }
-    
-        &-day {
-            flex-grow: 1;
-            padding: .2rem .8rem;
-            text-align: center;
-    
-            h2 { color: $white; text-decoration: underline; }
-        }
-    }
-}
-
-.btn-box {
-    width: 100%;
-    max-width: 60rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    column-gap: 2rem;
-}
-
-.btn {
-    color: $white;
-    background-color: $black;
+    width: 66%;
+    max-width: 30rem;
     text-align: center;
-    padding: 1rem 2rem;
-    border-radius: 5em;
-    box-shadow: $raised-sm;
+    row-gap: 1.1rem;
 
-    &:active {
-        background: linear-gradient(145deg, #222222, #292929);
-        box-shadow: none;
+    &__title { color: $accent; }
+
+    &__subtitle {
+        color: $accent-dark;
+        
+        a {
+            font-size: medium;
+            text-decoration: underline;
+        }
+    }
+
+    &__text {
+        text-align: left;
+        line-height: 1.4em;
+        color: $white;
+    }
+
+    &__button {
+        @include morph(1rem 2rem, 99rem, $raised-small);
+        margin-block: 1.2rem;
     }
 }
 
-.course {
-    position: absolute;
-    left:  0.5rem;
-    right: 0.5rem;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: black;
-    border-radius: 2rem;
-    background: linear-gradient(145deg, $accent, $accent-dark);
-
-    box-shadow: inset  3px  3px 15px rgba(256, 256, 256, .2),
-                inset -3px -3px 15px rgba(0, 0, 0, .3),
-                       3px  3px 15px rgba(0, 0, 0, .3);
-}
-
-.edit-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    display: flex;
-    flex-direction: column;
-    row-gap: 1.5rem;
+// Editor Styling -----------------------------------------------------------------
+.edit {
+    @include flex-center(column);
+    @include morph(2.5rem, 1rem, $raised-large);
     
+    width: 70%;
+    max-width: 25rem;
+    text-align: center;
+    row-gap: 2rem;
 
-    padding: 2.5rem;
-    border-radius: 1rem;
-    box-shadow: $raised;
-    background-color: $black;
-    
-    h1 { color: $accent; }
+    &__title { color: $accent; }
 
-    form {
-        display: flex;
-        flex-direction: column;
+    &__form {
+        @include flex-center(column);
+        width: 90%;
+        max-width: 20rem;
         align-items: stretch;
-        row-gap: 1.5rem;
+        row-gap: 1.1rem;
 
-        label {
-            color: $white;
-        }
-
-        input {
-            font-size: 1.25rem;
-            background-color: $black;
-            color: $white;
+        > * {
             border: none;
-            border-radius: 5rem;
-            box-shadow: $inset;
-            padding: 1.25rem 1.75rem;
+            font-size: 1rem;
+            &:focus { outline: none; }
         }
 
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            box-shadow: $raised-sm;
+        &__text {
+            z-index: 99;
+            color: $white;
+            background-color: $black;
+            @include morph(1.25rem 1.75rem, 99rem, $inset);
+            &:focus { @include morph(1.25rem 1.75rem, 99rem, $raised-small); }
         }
+    
+        &__days-box {
+            @include flex-center(row);
+            justify-content: space-around;
+            column-gap: 1.5rem;
 
-        input[type=submit] {
-            box-shadow: $raised-sm;
+            > div {
+                position: relative;
+                width: 5ch;
+                height: 5ch;
+                flex-basis: 100%;
+                color: $white;
+
+                box-shadow: $raised-small;
+                border-radius: 99rem;
+                background: linear-gradient(145deg, #292929, #222222);
+                &:focus, &:hover { background: linear-gradient(145deg, #222222, #292929); }
+
+                label {
+                    display: inline-block;
+                    height: 33%;
+                    width: 100%;
+                    padding-block: 30%;
+                    text-align: center;
+                }
+                
+                input {
+                    display: none;  
+                    width: 0;
+                    height: 0;
+        
+                    &:checked {
+                        display: unset;
+                        &::after { box-shadow: $hide, $inset; }
+                    }
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        inset: 0;
+                        border-radius: 99rem;
+                    }
+                }
+            }
+        }
+    
+        &__button {
             color: $accent-dark;
+            background: linear-gradient(175deg, #292929, #222222);
+            @include morph(1.25rem 1.75rem, 99rem, $raised-small);
+            z-index: 99;
+
+            &:focus, &:hover { background: linear-gradient(175deg, #252525, #292929); }
+            &::active { @include morph(1.25rem 1.75rem, 99rem, $inset); }
         }
+    }
+
+    &__popup {
+        color: $accent;
+        z-index: 99;
+    }
+    
+    &__alert {
+        font-style: italic;
+        font-weight: bold;
+        color: $alert;
+        z-index: 99;
     }
 }
 
-.days-checkboxes {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
 
-    &--stacked {
+// Week Styling -----------------------------------------------------------------
+.week {
+    @include flex-center(column);
+    row-gap: 2rem;
+    padding-top: 3rem;
+    margin-inline: auto;
+    color: $white;
+
+    &__box {
         position: relative;
-        width: 5ch;
-        height: 5ch;
-        
-        border-radius: 2em;
-        box-shadow: $raised-sm;
+        @include flex-center(row);
+        align-items: stretch;
+        width: 100%;
+        height: 32rem;
+        @include morph(1rem, 1rem, $raised-large);
+        padding-inline-end: 1.5rem;
 
-        label {
-            display: inline-block;
-            height: 33%;
-            width: 100%;
-            padding-block: 30%;
-            text-align: center;
-        }
-        
-        input {
-            display: none;  
-            width: 0;
-            height: 0;
+        &__column {
+            position: relative;
+            flex-basis: 0;
 
-            &:checked {
-                display: unset;
-                &::after { box-shadow: $hide, $inset; }
+            &--time {
+                flex-grow: .5;
+                text-align: right;
+
+                ul {
+                    margin-top: 1.9rem;
+                    line-height: 1.2;
+    
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 1.5rem;
+                        right: 0;
+                        bottom: 0;
+                        display: block;
+                        width: .1rem;
+                        background-color: $white;
+                        border-radius: 10rem;
+                    }
+                }
+                
+                li {
+                    position: relative;
+                    padding-inline: .5em;
+                    list-style: none;
+    
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        left: 100%;
+    
+                        width: 40.5em;
+                        height: .05rem;
+                        background-color: $white;
+                    }
+                }
+            }
+
+            &--day {
+                flex-grow: 1;
+                padding: .2rem .8rem;
+                text-align: center;
+
+                h2 { text-decoration: underline; }
             }
         }
 
-        input::after {
-            content: '';
+        &__course {
             position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            border-radius: 2em;
+            left:  0.5rem;
+            right: 0.5rem;
+            @include flex-center(column);
+            color: $black;
+            border-radius: 2rem;
+            background: linear-gradient(145deg, $accent, $accent-dark);
+            box-shadow: inset  3px  3px 15px rgba(256, 256, 256, .2),
+                        inset -3px -3px 15px rgba(0, 0, 0, .3),
+                            3px  3px 15px rgba(0, 0, 0, .3);
         }
     }
-}
 
-.course-view {
-    background-color: rgb(141, 138, 132);
-}
+    &__button-box {
+        width: 100%;
+        @include flex-center(row);
+        justify-content: space-evenly;
+        column-gap: 2rem;
 
-.course-list {
-    background-color: $black;
-    color: $white;
+        &__button {
+            @include morph(1rem 2rem, 99rem, $raised-small);
+
+            background: linear-gradient(145deg, #292929, #222222);
+            &:focus, &:hover { background: linear-gradient(145deg, #222222, #292929); }
+        }
+    }
+
+    &__text {
+        color: $accent-dark;
+    }
 }
