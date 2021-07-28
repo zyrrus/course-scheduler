@@ -7,10 +7,6 @@ from wtforms import TextField, IntegerField, TimeField, BooleanField, SubmitFiel
 
 from schedule.manage import Manager, Week
 
-# ===============================================
-# TODO: 
-# - Add flash for courses added
-# ===============================================
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
@@ -35,6 +31,8 @@ class DoneForm(FlaskForm):
 
 # Non-Flask Functions ----------------------------------
 def form_weekdays(form):
+    # Converts a list of checkbox responses into a 
+    # list of selected days
     day_names = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
     day_letters = ['M', 'T', 'W', 'Th', 'F']
     used = []
@@ -58,6 +56,7 @@ def week():
     index = int(request.cookies.get('index'))
     n = len(schedules)
 
+    # Keep the index within range
     if index < 0:
         index += n
     elif index >= n:
@@ -67,7 +66,6 @@ def week():
     
     return render_template('week.html', week=week.weekdays, index=index)
     
-
 
 @app.route("/editor/<courses_json>", methods=["GET", "POST"])
 def editor(courses_json):
@@ -83,13 +81,14 @@ def editor(courses_json):
             'days': form_weekdays(request.form)
         }
         new_url = courses_json + json.dumps(json_obj) + ','
-        print("submitted")
+
+        flash(json_obj['name'], 'course_list')
         return redirect(url_for('editor', courses_json=new_url))
 
     # Final submit form
     elif done_form.validate_on_submit() and done_form.done.data:
         if courses_json.endswith('['):
-            flash("You need to add at least one course!")
+            flash("You need to add at least one course!", "error")
         else:
             # Correct the json list in the url
             if courses_json.endswith(','):
@@ -122,6 +121,7 @@ def edit_redirect():
 
 @app.route("/set_index/<change>/")
 def set_index(change):
+    # Update index cookie for the week to use
     index = int(request.cookies.get("index"))
     index += int(change)
 

@@ -20,11 +20,21 @@
         {{ edit_form.submit_course(class_="edit__form__button") }}
     </form>
 
-    {% with messages = get_flashed_messages() %}
-        <!-- possibly flash added courses in green? --remove  -->
-        {% if messages %}
-            <p class="edit__alert">{{ messages[0] }}</p>
-        {% endif %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+
+            {% if category == 'course_list' %}
+                <p class="edit__popup">Added {{ message }}</p>
+            {% endif %}
+
+            {% if category == 'error' %}
+                <p class="edit__alert">{{ message }}</p>
+            {% endif %}
+
+        {% endfor %}
+    {% endif %}
     {% endwith %}
 
     <form class="edit__form" id="submit-form" method="POST">
